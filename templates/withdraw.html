@@ -1,0 +1,13 @@
+{% block content %}
+    <h1>Withdraw</h1>
+    <form action="/withdraw" method="post" novalidate>
+
+        <p>
+            {{ form.amount.label }}<br>
+            {{ form.amount(size=32) }}
+        </p>
+
+
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}
