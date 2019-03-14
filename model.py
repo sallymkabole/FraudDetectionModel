@@ -8,7 +8,8 @@ import json
 import numpy as np
 from flask_wtf import Form
 from flask import Flask, request, jsonify, render_template
-from app.forms import Withdraw
+import app
+from app.forms import WithdrawForm
 import pickle
 
 
@@ -27,10 +28,11 @@ app.config['SECRET_KEY'] = 'any secret string'
 
 @app.route('/withdraw', methods=['POST', 'GET'])
 def json_example():
-	form=Withdraw()
+	form = WithdrawForm()
 	if request.method == 'POST':
 		withdraw = request.form.get('amount')
-		return str(withdraw)
+		Withdraw = str(withdraw)
+		Withdraw = int(Withdraw)
 
 		balance = 1500
 		if Withdraw > 0:
@@ -73,13 +75,13 @@ def json_example():
 				t = model.predict([[int(Withdraw)]])
 				print(t)
 				if t == 0:
-					print("Transaction Declined")
+					return("Transaction Declined")
 				else:
-					print("Transaction Successful")
+					return("Transaction Successful")
 			else:
-				print("Insufficient funds")
+				return("Insufficient funds")
 		else:
-			print("Cannot Withdraw negative")
+			return("Cannot Withdraw negative")
 	return render_template('withdraw.html', form=form)
 
 

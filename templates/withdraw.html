@@ -1,13 +1,19 @@
-{% block content %}
-    <h1>Withdraw</h1>
-    <form action="/withdraw" method="post" novalidate>
+<html>
+    <body>
+        <h1>Withdraw</h1>
+        <form action="/withdraw" method="post" novalidate>
 
-        <p>
-            {{ form.amount.label }}<br>
-            {{ form.amount(size=32) }}
-        </p>
+            <div class="input">
+                    {{ form.amount.label }}<br>
+                    {{ form.amount(size=32) }}
+                    {{ form.submit() }}
+
+            </div>
+                
+            
 
 
-        <p>{{ form.submit() }}</p>
-    </form>
-{% endblock %}
+            
+        </form>
+    </body>
+</html>
